@@ -4,8 +4,7 @@ const doc = {
     title: 'Personal API',
     description: 'Personal API - Alirio Mieres - BYU Idaho - CSE 341'
   },
-  // host: 'cse341-lesson-05.onrender.com',
-  host: 'localhost:8080',
+  host: 'cse341-lesson-05.onrender.com',
   schemes: ['http']
 };
 
