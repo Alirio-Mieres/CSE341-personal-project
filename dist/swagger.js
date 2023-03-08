@@ -10,7 +10,7 @@ const doc = {
         description: 'Personal API - Alirio Mieres - BYU Idaho - CSE 341'
     },
     host: 'cse341-lesson-05.onrender.com',
-    schemes: ['http']
+    schemes: ['https']
 };
 const outputFile = './swagger.json';
 const endpointsFiles = ['./routes/index'];
