@@ -1,12 +1,10 @@
 import { Router } from "express";
+import swagger from "./swagger";
+import userRouter from "./users";
 
 const router = Router();
 
-router.get('/', (req, res) => {
-    res.json({
-        ok: true,
-        msg: 'Hello World'
-    });
-});
+router.use('/users', userRouter);
+router.use('/', swagger);
 
 export default router;
