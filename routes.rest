@@ -1,8 +1,8 @@
 // LOCALHOST 
 
-### Get all contacts GET http://localhost:8080/contacts
+### Get all users GET http://localhost:8080/users
 
-### Create contact POST http://localhost:8080/contacts
+### Create users POST http://localhost:8080/users
 
 {
     "firstName":"Tony", 
@@ -12,7 +12,7 @@
     "birthday":"06/19/2000"
 }
 
-### PUT contact PUT http://localhost:8080/contacts/6408c278485d8a3f7da65e3a
+### PUT users PUT http://localhost:8080/users/6408c278485d8a3f7da65e3a
 
 {
     "firstName":"Taylor", 
@@ -22,14 +22,14 @@
     "birthday":"12/12/20"
 } 
 
-### DELETE contact DELETE http://localhost:8080/contacts/6408c23e485d8a3f7da65e36 
+### DELETE users DELETE http://localhost:8080/users/6408c23e485d8a3f7da65e36 
 
 
 
 // PRODUCTION Deploy 
-### Get all contacts GET https://cse341-node-03.onrender.com/contacts
+### Get all users GET https://cse341-node-03.onrender.com/users
 
-### Create contact POST https://cse341-node-03.onrender.com/contacts
+### Create users POST https://cse341-node-03.onrender.com/users
 
 {
     "firstName":"Ashley", 
@@ -39,7 +39,7 @@
     "birthday":"06/19/2000"
 }
 
-### PUT contact PUT https://cse341-node-03.onrender.com/contacts/6408c27e485d8a3f7da65e3c
+### PUT users PUT https://cse341-node-03.onrender.com/users/6408c27e485d8a3f7da65e3c
 
 {
     "firstName":"Sarah", 
@@ -49,4 +49,4 @@
     "birthday":"06/12/20"
 }
 
-### DELETE contact DELETE https://cse341-node-03.onrender.com/contacts/6408c244485d8a3f7da65e38
+### DELETE users DELETE https://cse341-node-03.onrender.com/users/6408c244485d8a3f7da65e38
