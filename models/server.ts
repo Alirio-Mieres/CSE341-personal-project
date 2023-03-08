@@ -14,17 +14,22 @@ class Server {
 
         //DB connection
         this.dbConnection();
+        
         //Middlewares
-
-        this.routes();
-        //Routes
-
         this.middlewares();
+
+        //Routes
+        this.routes();
+        
     }
 
     middlewares() {
         //CORS
-        this.app.use( cors() );
+        this.app.use( cors({
+            optionsSuccessStatus: 200,
+            methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+            allowedHeaders: 'Content-Type, Authorization, X-Requested-With',
+          }) );
 
         //Body parsing
         this.app.use( express.json() );

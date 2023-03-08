@@ -1,0 +1,52 @@
+// LOCALHOST 
+
+### Get all contacts GET http://localhost:8080/contacts
+
+### Create contact POST http://localhost:8080/contacts
+
+{
+    "firstName":"Tony", 
+    "lastName":"Hanks", 
+    "email":"hanks@test.com", 
+    "favoriteColor":"Brown", 
+    "birthday":"06/19/2000"
+}
+
+### PUT contact PUT http://localhost:8080/contacts/6408c278485d8a3f7da65e3a
+
+{
+    "firstName":"Taylor", 
+    "lastName":"Eakins", 
+    "email":"test@gmail.com", 
+    "favoriteColor":"Green", 
+    "birthday":"12/12/20"
+} 
+
+### DELETE contact DELETE http://localhost:8080/contacts/6408c23e485d8a3f7da65e36 
+
+
+
+// PRODUCTION Deploy 
+### Get all contacts GET https://cse341-node-03.onrender.com/contacts
+
+### Create contact POST https://cse341-node-03.onrender.com/contacts
+
+{
+    "firstName":"Ashley", 
+    "lastName":"Weaver",
+    "email":"posttest@test.com", 
+    "favoriteColor":"Brown", 
+    "birthday":"06/19/2000"
+}
+
+### PUT contact PUT https://cse341-node-03.onrender.com/contacts/6408c27e485d8a3f7da65e3c
+
+{
+    "firstName":"Sarah", 
+    "lastName":"Birch",
+    "email":"puttesst@gmail.com",
+    "favoriteColor":"Yellow", 
+    "birthday":"06/12/20"
+}
+
+### DELETE contact DELETE https://cse341-node-03.onrender.com/contacts/6408c244485d8a3f7da65e38

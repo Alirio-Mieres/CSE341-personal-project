@@ -1,0 +1,184 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Personal API",
+        "description": "Personal API - Alirio Mieres - BYU Idaho - CSE 341",
+        "version": "1.0.0"
+    },
+    "host": "localhost:8080",
+    "basePath": "/",
+    "schemes": [
+        "http"
+    ],
+    "paths": {
+        "/users/": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "Endpoint get all users",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "Endpoint create a user",
+                "parameters": [
+                    {
+                        "name": "User",
+                        "in": "body",
+                        "description": "User Information",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "firstName": {
+                                    "type": "string",
+                                    "example": "Alirio"
+                                },
+                                "lastName": {
+                                    "type": "string",
+                                    "example": "Mieres"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "example": "andres@test.com"
+                                },
+                                "birthday": {
+                                    "type": "string",
+                                    "example": "06/19/2000"
+                                },
+                                "phone": {
+                                    "type": "string",
+                                    "example": "1234567890"
+                                },
+                                "address": {
+                                    "type": "string",
+                                    "example": "Calle 123"
+                                }
+                            },
+                            "required": [
+                                "firstName",
+                                "lastName",
+                                "email",
+                                "birthday",
+                                "phone",
+                                "address"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "Endpoint update a user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Contact",
+                        "in": "body",
+                        "description": "User Information",
+                        "required": true,
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "firstName": {
+                                    "type": "string",
+                                    "example": "Alirio"
+                                },
+                                "lastName": {
+                                    "type": "string",
+                                    "example": "Mieres"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "example": "andres@test.com"
+                                },
+                                "birthday": {
+                                    "type": "string",
+                                    "example": "06/19/2000"
+                                },
+                                "phone": {
+                                    "type": "string",
+                                    "example": "1234567890"
+                                },
+                                "address": {
+                                    "type": "string",
+                                    "example": "Calle 123"
+                                }
+                            },
+                            "required": [
+                                "firstName",
+                                "lastName",
+                                "email",
+                                "birthday",
+                                "phone",
+                                "address"
+                            ]
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "Endpoint delete a user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api-docs": {
+            "get": {
+                "description": "",
+                "parameters": [],
+                "responses": {}
+            }
+        }
+    }
+}
