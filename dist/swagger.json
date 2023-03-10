@@ -5,10 +5,10 @@
         "description": "Personal API - Alirio Mieres - BYU Idaho - CSE 341",
         "version": "1.0.0"
     },
-    "host": "cse341-lesson-05.onrender.com",
+    "host": "localhost:8080",
     "basePath": "/",
     "schemes": [
-        "https"
+        "http"
     ],
     "paths": {
         "/users/": {
@@ -85,6 +85,25 @@
             }
         },
         "/users/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            },
             "put": {
                 "tags": [
                     "Users"

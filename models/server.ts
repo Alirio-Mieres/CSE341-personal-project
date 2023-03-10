@@ -4,50 +4,50 @@ import router from '../routes';
 import dbConnection from '../database/config';
 
 class Server {
-    
-    private app: Application;
-    private port: string;
+  private app: Application;
+  private port: string;
 
-    constructor() {
-        this.app = express();
-        this.port = process.env.PORT || '8080';
+  constructor() {
+    this.app = express();
+    this.port = process.env.PORT || '8080';
 
-        //DB connection
-        this.dbConnection();
-        
-        //Middlewares
-        this.middlewares();
+    //DB connection
+    this.dbConnection();
 
-        //Routes
-        this.routes();
-        
-    }
+    //Middlewares
+    this.middlewares();
 
-    middlewares() {
-        //CORS
-        this.app.use( cors({
-            optionsSuccessStatus: 200,
-            methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-            allowedHeaders: 'Content-Type, Authorization, X-Requested-With',
-          }) );
+    //Routes
+    this.routes();
+  }
 
-        //Body parsing
-        this.app.use( express.json() );
-    }
+  middlewares() {
+    //CORS
+    this.app.use(
+      cors({
+        optionsSuccessStatus: 200,
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        allowedHeaders: 'Content-Type, Authorization, X-Requested-With'
+      })
+    );
 
-    async dbConnection() {
-        await dbConnection();
-    }
+    //Body parsing
+    this.app.use(express.json());
+  }
 
-    routes() {
-        this.app.use( '/', router )
-    }
+  async dbConnection() {
+    await dbConnection();
+  }
 
-    listen() {
-        this.app.listen(this.port, () => {
-            console.log(`Server running on port ${this.port} 🚀`);
-        });
-    }
+  routes() {
+    this.app.use('/', router);
+  }
+
+  listen() {
+    this.app.listen(this.port, () => {
+      console.log(`Server running on port ${this.port} 🚀`);
+    });
+  }
 }
 
 export default Server;

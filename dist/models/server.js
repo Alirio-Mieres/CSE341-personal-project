@@ -32,7 +32,7 @@ class Server {
         this.app.use((0, cors_1.default)({
             optionsSuccessStatus: 200,
             methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-            allowedHeaders: 'Content-Type, Authorization, X-Requested-With',
+            allowedHeaders: 'Content-Type, Authorization, X-Requested-With'
         }));
         //Body parsing
         this.app.use(express_1.default.json());

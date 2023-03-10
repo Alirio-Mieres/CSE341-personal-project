@@ -19,7 +19,7 @@ const ContactSchema = Schema({
     },
     address: {
         type: String
-    },
+    }
 });
 exports.default = model('User', ContactSchema);
 //# sourceMappingURL=user.js.map

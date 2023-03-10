@@ -18,8 +18,7 @@ const ContactSchema = Schema({
   },
   address: {
     type: String
-},
-
+  }
 });
 
 export default model('User', ContactSchema);

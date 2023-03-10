@@ -1,6 +1,6 @@
-import { Router } from "express";
-import swagger from "./swagger";
-import userRouter from "./users";
+import { Router } from 'express';
+import swagger from './swagger';
+import userRouter from './users';
 
 const router = Router();
 

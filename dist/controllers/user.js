@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateUser = exports.deleteUser = exports.findAll = exports.createUser = void 0;
+exports.updateUser = exports.deleteUser = exports.findAll = exports.findOne = exports.createUser = void 0;
 const user_1 = __importDefault(require("../models/user"));
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // #swagger.tags = ['Users']
@@ -22,21 +22,29 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     yield user.save();
     res.status(201).json(user);
     /* #swagger.parameters['User'] = {
-        in: 'body',
-        description: 'User Information',
-        required: true,
-        schema: {
-          $firstName:"Alirio",
-          $lastName:"Mieres",
-          $email:"andres@test.com",
-          $birthday:"06/19/2000",
-          $phone:"1234567890",
-          $address:"Calle 123"
+          in: 'body',
+          description: 'User Information',
+          required: true,
+          schema: {
+            $firstName:"Alirio",
+            $lastName:"Mieres",
+            $email:"andres@test.com",
+            $birthday:"06/19/2000",
+            $phone:"1234567890",
+            $address:"Calle 123"
+          }
         }
-      }
-    */
+      */
 });
 exports.createUser = createUser;
+const findOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    // #swagger.tags = ['Users']
+    const { id } = req.params;
+    const user = yield user_1.default.findById(id);
+    console.log(user);
+    res.status(200).json(user);
+});
+exports.findOne = findOne;
 const findAll = (_, res) => __awaiter(void 0, void 0, void 0, function* () {
     // #swagger.tags = ['Users']
     // #swagger.description = 'Endpoint get all users'
@@ -83,19 +91,19 @@ const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         });
     }
     /* #swagger.parameters['Contact'] = {
-        in: 'body',
-        description: 'User Information',
-        required: true,
-        schema: {
-          $firstName:"Alirio",
-          $lastName:"Mieres",
-          $email:"andres@test.com",
-          $birthday:"06/19/2000",
-          $phone:"1234567890",
-          $address:"Calle 123"
+          in: 'body',
+          description: 'User Information',
+          required: true,
+          schema: {
+            $firstName:"Alirio",
+            $lastName:"Mieres",
+            $email:"andres@test.com",
+            $birthday:"06/19/2000",
+            $phone:"1234567890",
+            $address:"Calle 123"
+          }
         }
-      }
-    */
+      */
 });
 exports.updateUser = updateUser;
 //# sourceMappingURL=user.js.map
