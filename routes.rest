@@ -27,9 +27,9 @@
 
 
 // PRODUCTION Deploy 
-### Get all users GET https://cse341-node-03.onrender.com/users
+### Get all users GET https://cse341-lesson-05.onrender.com/users
 
-### Create users POST https://cse341-node-03.onrender.com/users
+### Create users POST https://cse341-lesson-05.onrender.com/users
 
 {
     "firstName":"Ashley", 
@@ -39,7 +39,7 @@
     "birthday":"06/19/2000"
 }
 
-### PUT users PUT https://cse341-node-03.onrender.com/users/6408c27e485d8a3f7da65e3c
+### PUT users PUT https://cse341-lesson-05.onrender.com/users/6408c27e485d8a3f7da65e3c
 
 {
     "firstName":"Sarah", 
@@ -49,4 +49,4 @@
     "birthday":"06/12/20"
 }
 
-### DELETE users DELETE https://cse341-node-03.onrender.com/users/6408c244485d8a3f7da65e38
+### DELETE users DELETE https://cse341-lesson-05.onrender.com/users/6408c244485d8a3f7da65e38
