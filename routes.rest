@@ -12,7 +12,7 @@
     "birthday":"06/19/2000"
 }
 
-### PUT users PUT http://localhost:8080/users/6408c278485d8a3f7da65e3a
+### PUT users PUT http://localhost:8080/users/640becf31fffa971db2d902f
 
 {
     "firstName":"Taylor", 
@@ -22,14 +22,14 @@
     "birthday":"12/12/20"
 } 
 
-### DELETE users DELETE http://localhost:8080/users/6408c23e485d8a3f7da65e36 
+### DELETE users DELETE http://localhost:8080/users/640bf2bae949b1c45aeddc1b 
 
 
 
 // PRODUCTION Deploy 
-### Get all users GET https://cse341-node-03.onrender.com/users
+### Get all users GET https://cse341-lesson-06.onrender.com/users
 
-### Create users POST https://cse341-node-03.onrender.com/users
+### Create users POST https://cse341-lesson-06.onrender.com/users
 
 {
     "firstName":"Ashley", 
@@ -39,7 +39,7 @@
     "birthday":"06/19/2000"
 }
 
-### PUT users PUT https://cse341-node-03.onrender.com/users/6408c27e485d8a3f7da65e3c
+### PUT users PUT https://cse341-lesson-06.onrender.com/users/640bf3c4e949b1c45aeddc27
 
 {
     "firstName":"Sarah", 
@@ -49,4 +49,4 @@
     "birthday":"06/12/20"
 }
 
-### DELETE users DELETE https://cse341-node-03.onrender.com/users/6408c244485d8a3f7da65e38
+### DELETE users DELETE https://cse341-lesson-06.onrender.com/users/640bf3d8e949b1c45aeddc2a
