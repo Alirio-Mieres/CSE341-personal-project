@@ -8,6 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -41,7 +52,8 @@ const findOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // #swagger.tags = ['Users']
     const { id } = req.params;
     const user = yield user_1.default.findById(id);
-    console.log(user);
+    if (!user)
+        return res.status(404).send({ msg: 'User not found' });
     res.status(200).json(user);
 });
 exports.findOne = findOne;
@@ -63,33 +75,22 @@ exports.findAll = findAll;
 const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // #swagger.tags = ['Users']
     // #swagger.description = 'Endpoint delete a user'
-    try {
-        const user = yield user_1.default.findByIdAndDelete(req.params.id);
-        res.status(200).json(user);
-    }
-    catch (error) {
-        console.log(error);
-        res.status(500).json({
-            msg: error
-        });
-    }
+    const { id } = req.params;
+    yield user_1.default.findByIdAndDelete(id);
+    res.status(200).send({
+        msg: 'User deleted'
+    });
 });
 exports.deleteUser = deleteUser;
 const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // #swagger.tags = ['Users']
     // #swagger.description = 'Endpoint update a user'
-    try {
-        const { id } = req.params;
-        const data = req.body;
-        const user = yield user_1.default.findByIdAndUpdate(id, data);
-        res.status(204).json(user);
-    }
-    catch (error) {
-        console.log(error);
-        res.status(500).json({
-            msg: error
-        });
-    }
+    const { id } = req.params;
+    const _a = req.body, { _id, email } = _a, data = __rest(_a, ["_id", "email"]);
+    const user = yield user_1.default.findByIdAndUpdate(id, data);
+    res.status(204).json({
+        user
+    });
     /* #swagger.parameters['Contact'] = {
           in: 'body',
           description: 'User Information',
@@ -97,7 +98,6 @@ const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
           schema: {
             $firstName:"Alirio",
             $lastName:"Mieres",
-            $email:"andres@test.com",
             $birthday:"06/19/2000",
             $phone:"1234567890",
             $address:"Calle 123"

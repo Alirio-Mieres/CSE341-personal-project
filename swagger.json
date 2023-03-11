@@ -5,10 +5,10 @@
     "description": "Personal API - Alirio Mieres - BYU Idaho - CSE 341",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "cse341-lesson-06.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/users/": {
@@ -101,6 +101,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       },
@@ -132,10 +135,6 @@
                   "type": "string",
                   "example": "Mieres"
                 },
-                "email": {
-                  "type": "string",
-                  "example": "andres@test.com"
-                },
                 "birthday": {
                   "type": "string",
                   "example": "06/19/2000"
@@ -152,7 +151,6 @@
               "required": [
                 "firstName",
                 "lastName",
-                "email",
                 "birthday",
                 "phone",
                 "address"
@@ -163,9 +161,6 @@
         "responses": {
           "204": {
             "description": "No Content"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       },
@@ -185,9 +180,6 @@
         "responses": {
           "200": {
             "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
           }
         }
       }
