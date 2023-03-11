@@ -2,6 +2,8 @@
 
 ### Get all users GET http://localhost:8080/users
 
+### Get one users GET http://localhost:8080/users/640bf3f6e949b1c45aeddc31
+
 ### Create users POST http://localhost:8080/users
 
 {
@@ -28,6 +30,8 @@
 
 // PRODUCTION Deploy 
 ### Get all users GET https://cse341-lesson-06.onrender.com/users
+
+### Get one users GET https://cse341-lesson-06.onrender.com/users/640bf3f6e949b1c45aeddc31
 
 ### Create users POST https://cse341-lesson-06.onrender.com/users
 
