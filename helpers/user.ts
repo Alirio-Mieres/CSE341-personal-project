@@ -1,6 +1,6 @@
 import { check } from 'express-validator';
 import { emailExists, userExistById } from '../middelware/db-validators';
-import { validaFields } from './validator';
+import { validateFields } from './validator';
 
 const createUserValidation = [
   check('firstName', 'Firstname is required')
@@ -30,7 +30,7 @@ const createUserValidation = [
     .isString()
     .withMessage('Address must be a string'),
   check('email').custom(emailExists),
-  validaFields
+  validateFields
 ];
 
 const updateUserValidation = [
@@ -41,15 +41,15 @@ const updateUserValidation = [
   check('phone', 'Phone must be a string').optional().isString(),
   check('address', 'Address must be a string').optional().isString(),
   check('birthday', 'Birthday must be a string').optional().isString(),
-  validaFields
+  validateFields
 ];
 
 const deleteUserValidation = [
   check('id', 'Is not a mongodb id').isMongoId(),
   check('id').custom(userExistById),
-  validaFields
+  validateFields
 ];
 
-const findOneValidation = [check('id', 'Is not a mongodb id').isMongoId(), validaFields];
+const findOneValidation = [check('id', 'Is not a mongodb id').isMongoId(), validateFields];
 
 export { createUserValidation, updateUserValidation, deleteUserValidation, findOneValidation };
