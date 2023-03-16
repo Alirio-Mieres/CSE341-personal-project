@@ -43,6 +43,7 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             $firstName:"Alirio",
             $lastName:"Mieres",
             $email:"andres@test.com",
+            $password: "$ecretPassword",
             $birthday:"06/19/2000",
             $phone:"1234567890",
             $address:"Calle 123"
