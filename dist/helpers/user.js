@@ -32,7 +32,7 @@ const createUserValidation = [
         .isString()
         .withMessage('Address must be a string'),
     (0, express_validator_1.check)('email').custom(db_validators_1.emailExists),
-    validator_1.validaFields
+    validator_1.validateFields
 ];
 exports.createUserValidation = createUserValidation;
 const updateUserValidation = [
@@ -43,15 +43,15 @@ const updateUserValidation = [
     (0, express_validator_1.check)('phone', 'Phone must be a string').optional().isString(),
     (0, express_validator_1.check)('address', 'Address must be a string').optional().isString(),
     (0, express_validator_1.check)('birthday', 'Birthday must be a string').optional().isString(),
-    validator_1.validaFields
+    validator_1.validateFields
 ];
 exports.updateUserValidation = updateUserValidation;
 const deleteUserValidation = [
     (0, express_validator_1.check)('id', 'Is not a mongodb id').isMongoId(),
     (0, express_validator_1.check)('id').custom(db_validators_1.userExistById),
-    validator_1.validaFields
+    validator_1.validateFields
 ];
 exports.deleteUserValidation = deleteUserValidation;
-const findOneValidation = [(0, express_validator_1.check)('id', 'Is not a mongodb id').isMongoId(), validator_1.validaFields];
+const findOneValidation = [(0, express_validator_1.check)('id', 'Is not a mongodb id').isMongoId(), validator_1.validateFields];
 exports.findOneValidation = findOneValidation;
 //# sourceMappingURL=user.js.map

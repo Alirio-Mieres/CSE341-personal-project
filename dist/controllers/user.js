@@ -24,12 +24,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateUser = exports.deleteUser = exports.findAll = exports.findOne = exports.createUser = void 0;
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const user_1 = __importDefault(require("../models/user"));
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // #swagger.tags = ['Users']
     // #swagger.description = 'Endpoint create a user'
     const body = req.body;
     const user = new user_1.default(body);
+    const salt = bcryptjs_1.default.genSaltSync();
+    user.password = bcryptjs_1.default.hashSync(body.password, salt);
     yield user.save();
     res.status(201).json(user);
     /* #swagger.parameters['User'] = {
