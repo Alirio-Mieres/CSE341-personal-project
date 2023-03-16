@@ -10,6 +10,9 @@ const ContactSchema = Schema({
   email: {
     type: String
   },
+  password: {
+    type: String
+  },
   birthday: {
     type: String
   },
