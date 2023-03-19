@@ -7,7 +7,7 @@ const doc = {
   },
 
   host: 'cse341-lesson-08.onrender.com',
-  schemes: ['http'],
+  schemes: ['https'],
   securityDefinitions: {
     apiKey: {
       type: 'apiKey',

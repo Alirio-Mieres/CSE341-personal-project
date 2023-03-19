@@ -10,7 +10,7 @@ const doc = {
         description: 'Personal API - Alirio Mieres - BYU Idaho - CSE 341'
     },
     host: 'cse341-lesson-08.onrender.com',
-    schemes: ['http'],
+    schemes: ['https'],
     securityDefinitions: {
         apiKey: {
             type: 'apiKey',
