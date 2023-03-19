@@ -1,17 +1,27 @@
 const { Schema, model } = require('mongoose');
 
-const ContactSchema = Schema({
+const UserSchema = Schema({
   firstName: {
-    type: String
+    type: String,
+    required: [true, 'Fierst Name is required']
   },
   lastName: {
-    type: String
+    type: String,
+    required: [true, 'Last Name is required']
   },
   email: {
-    type: String
+    type: String,
+    require: [true, 'Email is required'],
+    unique: true
   },
   password: {
-    type: String
+    type: String,
+    required: [true, 'Password is required']
+  },
+  role: {
+    type: String,
+    required: true,
+    enum: ['ADMIN_ROLE', 'USER_ROLE']
   },
   birthday: {
     type: String
@@ -24,4 +34,10 @@ const ContactSchema = Schema({
   }
 });
 
-export default model('User', ContactSchema);
+UserSchema.methods.toJSON = function () {
+  const { __v, _id, password, ...user } = this.toObject();
+  user.uid = _id;
+  return user;
+};
+
+export default model('User', UserSchema);

@@ -1,8 +1,11 @@
 import { check } from 'express-validator';
-import { emailExists, userExistById } from '../middelware/db-validators';
 import { validateFields } from './validator';
+import { validateJWT } from '../middelware/validate-jwt';
+import { emailExists, userExistById, isValidRole } from './db-validator';
+import { hasRole, isAdminRole } from '../middelware/validate-roles';
 
 const createUserValidation = [
+  validateJWT,
   check('firstName', 'Firstname is required')
     .not()
     .isEmpty()
@@ -30,10 +33,12 @@ const createUserValidation = [
     .isString()
     .withMessage('Address must be a string'),
   check('email').custom(emailExists),
+  check('role').custom(isValidRole),
   validateFields
 ];
 
 const updateUserValidation = [
+  validateJWT,
   check('id', 'Is not a mongodb id').isMongoId(),
   check('id').custom(userExistById),
   check('firstName', 'Firstname must be a string').optional().isString(),
@@ -45,11 +50,17 @@ const updateUserValidation = [
 ];
 
 const deleteUserValidation = [
+  validateJWT,
+  isAdminRole,
   check('id', 'Is not a mongodb id').isMongoId(),
   check('id').custom(userExistById),
   validateFields
 ];
 
-const findOneValidation = [check('id', 'Is not a mongodb id').isMongoId(), validateFields];
+const findOneValidation = [
+  validateJWT,
+  check('id', 'Is not a mongodb id').isMongoId(),
+  validateFields
+];
 
 export { createUserValidation, updateUserValidation, deleteUserValidation, findOneValidation };
