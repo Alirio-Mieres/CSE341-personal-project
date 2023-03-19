@@ -5,7 +5,7 @@
     "description": "Personal API - Alirio Mieres - BYU Idaho - CSE 341",
     "version": "1.0.0"
   },
-  "host": "localhost:8080",
+  "host": "cse341-lesson-08.onrender.com",
   "basePath": "/",
   "schemes": [
     "http"
@@ -359,6 +359,9 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -411,8 +414,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "204": {
+            "description": "No Content"
           },
           "500": {
             "description": "Internal Server Error"
