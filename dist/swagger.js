@@ -9,7 +9,7 @@ const doc = {
         title: 'Personal API',
         description: 'Personal API - Alirio Mieres - BYU Idaho - CSE 341'
     },
-    host: 'localhost:8080',
+    host: 'cse341-lesson-08.onrender.com',
     schemes: ['http'],
     securityDefinitions: {
         apiKey: {
@@ -23,28 +23,4 @@ const doc = {
 const outputFile = './swagger.json';
 const endpointsFiles = ['./routes/index'];
 (0, swagger_autogen_1.default)(outputFile, endpointsFiles, doc);
-// const doc = {
-//   info: {
-//     title: 'Personal API',
-//     description: 'Personal API - Alirio Mieres - BYU Idaho - CSE 341'
-//   },
-//   host: 'localhost:8080',
-//   schemes: ['http'],
-//   security: {
-//     bearerAuth: {
-//       type: 'apiKey',
-//       in: 'header',
-//       name: 'apiKey',
-//       description: 'Bearer authentication token. Example: Bearer eyJhbGciOiJIUzI1NiJ9...'
-//     }
-//   },
-//   securityDefinitions: {
-//     bearerAuth: {
-//       type: 'apiKey',
-//       in: 'header',
-//       name: 'apiKey',
-//       description: 'Bearer authentication token. Example: Bearer eyJhbGciOiJIUzI1NiJ9...'
-//     }
-//   }
-// };
 //# sourceMappingURL=swagger.js.map
