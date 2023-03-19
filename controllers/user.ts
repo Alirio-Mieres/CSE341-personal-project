@@ -5,16 +5,21 @@ import User from '../models/user';
 export const createUser = async (req: Request, res: Response) => {
   // #swagger.tags = ['Users']
   // #swagger.description = 'Endpoint create a user'
+  try {
+    const body = req.body;
+    const user = new User(body);
 
-  const body = req.body;
-  const user = new User(body);
+    const salt = bcryptjs.genSaltSync();
+    user.password = bcryptjs.hashSync(body.password, salt);
 
-  const salt = bcryptjs.genSaltSync();
-  user.password = bcryptjs.hashSync(body.password, salt);
+    await user.save();
 
-  await user.save();
-
-  res.status(201).json(user);
+    res.status(201).json(user);
+  } catch (error) {
+    res.status(500).json({
+      msg: error
+    });
+  }
 
   /* #swagger.parameters['User'] = {
         in: 'body',
@@ -27,7 +32,8 @@ export const createUser = async (req: Request, res: Response) => {
           $password: "$ecretPassword",
           $birthday:"06/19/2000",
           $phone:"1234567890",
-          $address:"Calle 123"
+          $address:"Calle 123",
+          $role:"USER_ROLE"
         }
       } 
     */
@@ -41,6 +47,18 @@ export const findOne = async (req: Request, res: Response) => {
   if (!user) return res.status(404).send({ msg: 'User not found' });
 
   res.status(200).json(user);
+
+  /**
+   * @swagger
+   * /api/endpoint:
+   *   get:
+   *     description: Descripción del endpoint
+   *     security:
+   *       - apiKey: []
+   *     responses:
+   *       '200':
+   *         description: Respuesta exitosa
+   */
 };
 
 export const findAll = async (_: Request, res: Response) => {
@@ -56,32 +74,69 @@ export const findAll = async (_: Request, res: Response) => {
       msg: error
     });
   }
+
+  /**
+   * @swagger
+   * /api/endpoint:
+   *   get:
+   *     description: Descripción del endpoint
+   *     security:
+   *       - apiKey: []
+   *     responses:
+   *       '200':
+   *         description: Respuesta exitosa
+   */
 };
 
 export const deleteUser = async (req: Request, res: Response) => {
   // #swagger.tags = ['Users']
   // #swagger.description = 'Endpoint delete a user'
+  try {
+    const { id } = req.params;
+    await User.findByIdAndDelete(id);
 
-  const { id } = req.params;
-  await User.findByIdAndDelete(id);
+    res.status(200).json({
+      msg: 'User deleted'
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      msg: error
+    });
+  }
 
-  res.status(200).send({
-    msg: 'User deleted'
-  });
+  /**
+   * @swagger
+   * /api/endpoint:
+   *   get:
+   *     description: Descripción del endpoint
+   *     security:
+   *       - apiKey: []
+   *     responses:
+   *       '200':
+   *         description: Respuesta exitosa
+   */
 };
 
 export const updateUser = async (req: Request, res: Response) => {
   // #swagger.tags = ['Users']
   // #swagger.description = 'Endpoint update a user'
 
-  const { id } = req.params;
-  const { _id, email, ...data } = req.body;
+  try {
+    const { id } = req.params;
+    const { _id, email, ...data } = req.body;
 
-  const user = await User.findByIdAndUpdate(id, data);
+    const user = await User.findByIdAndUpdate(id, data);
 
-  res.status(204).json({
-    user
-  });
+    res.status(204).json({
+      user
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      msg: error
+    });
+  }
 
   /* #swagger.parameters['Contact'] = {
         in: 'body',
@@ -96,4 +151,16 @@ export const updateUser = async (req: Request, res: Response) => {
         }
       } 
     */
+
+  /**
+   * @swagger
+   * /api/endpoint:
+   *   get:
+   *     description: Descripción del endpoint
+   *     security:
+   *       - apiKey: []
+   *     responses:
+   *       '200':
+   *         description: Respuesta exitosa
+   */
 };

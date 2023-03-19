@@ -13,9 +13,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.login = void 0;
-// import bcryptjs from 'bcryptjs';
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const user_1 = __importDefault(require("../models/user"));
+const generate_jwt_1 = require("../helpers/generate-jwt");
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    // #swagger.tags = ['Login']
+    // #swagger.description = 'Login user'
     const { email, password } = req.body;
     try {
         const user = yield user_1.default.findOne({ email });
@@ -24,13 +27,17 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 msg: 'User or password are incorrect'
             });
         }
-        // const validatePassword = bcryptjs.compareSync(password, user.password);
-        // if(!validatePassword) {
-        //     return res.status(400).json({
-        //         msg: "User or password are incorrect"
-        //     });
-        // }
-        res.json('Login');
+        const validatePassword = bcryptjs_1.default.compareSync(password, user.password);
+        if (!validatePassword) {
+            return res.status(400).json({
+                msg: 'User or password are incorrect'
+            });
+        }
+        const token = yield (0, generate_jwt_1.generateJWT)(user.id);
+        res.json({
+            user,
+            token
+        });
     }
     catch (error) {
         console.log(error);
@@ -38,6 +45,17 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             msg: 'Something went wrong'
         });
     }
+    /* #swagger.parameters['Product'] = {
+          in: 'body',
+          description: 'Product Information',
+          required: true,
+          schema: {
+            $email:"test1@gmail.com",
+            $password:"12345",
+            
+          }
+        }
+      */
 });
 exports.login = login;
 //# sourceMappingURL=auth.js.map

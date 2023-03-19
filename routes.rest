@@ -2,16 +2,18 @@
 
 ### Get all users GET http://localhost:8080/users
 
-### Get one users GET http://localhost:8080/users/640bf3f6e949b1c45aeddc31
+### Get one users GET http://localhost:8080/users/6412a348b4ddb25cf52c91db
 
 ### Create users POST http://localhost:8080/users
 
 {
     "firstName":"Tony", 
     "lastName":"Hanks", 
-    "email":"hanks@test.com", 
-    "favoriteColor":"Brown", 
-    "birthday":"06/19/2000"
+    "email":"hanks@test.com",
+    "password": "$ecretPassword",
+    "birthday": "06/06/1994",
+    "phone": "1234567890",
+    "address": "Puerto Ordaz",
 }
 
 ### PUT users PUT http://localhost:8080/users/640becf31fffa971db2d902f
@@ -20,8 +22,9 @@
     "firstName":"Taylor", 
     "lastName":"Eakins", 
     "email":"test@gmail.com", 
-    "favoriteColor":"Green", 
-    "birthday":"12/12/20"
+    "birthday": "06/06/1994",
+    "phone": "1234567890",
+    "address": "Puerto Ordaz"
 } 
 
 ### DELETE users DELETE http://localhost:8080/users/640bf2bae949b1c45aeddc1b 
@@ -38,9 +41,11 @@
 {
     "firstName":"Ashley", 
     "lastName":"Weaver",
-    "email":"posttest@test.com", 
-    "favoriteColor":"Brown", 
-    "birthday":"06/19/2000"
+    "email":"posttest@test.com",
+    "password": "$ecretPassword", 
+    "birthday": "06/06/1994",
+    "phone": "1234567890",
+    "address": "Puerto Ordaz"
 }
 
 ### PUT users PUT https://cse341-lesson-06.onrender.com/users/640bf3c4e949b1c45aeddc27
@@ -49,8 +54,9 @@
     "firstName":"Sarah", 
     "lastName":"Birch",
     "email":"puttesst@gmail.com",
-    "favoriteColor":"Yellow", 
-    "birthday":"06/12/20"
+    "birthday": "06/06/1994",
+    "phone": "1234567890",
+    "address": "Puerto Ordaz"
 }
 
 ### DELETE users DELETE https://cse341-lesson-06.onrender.com/users/640bf3d8e949b1c45aeddc2a

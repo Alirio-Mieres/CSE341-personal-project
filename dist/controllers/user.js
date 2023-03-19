@@ -29,12 +29,19 @@ const user_1 = __importDefault(require("../models/user"));
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // #swagger.tags = ['Users']
     // #swagger.description = 'Endpoint create a user'
-    const body = req.body;
-    const user = new user_1.default(body);
-    const salt = bcryptjs_1.default.genSaltSync();
-    user.password = bcryptjs_1.default.hashSync(body.password, salt);
-    yield user.save();
-    res.status(201).json(user);
+    try {
+        const body = req.body;
+        const user = new user_1.default(body);
+        const salt = bcryptjs_1.default.genSaltSync();
+        user.password = bcryptjs_1.default.hashSync(body.password, salt);
+        yield user.save();
+        res.status(201).json(user);
+    }
+    catch (error) {
+        res.status(500).json({
+            msg: error
+        });
+    }
     /* #swagger.parameters['User'] = {
           in: 'body',
           description: 'User Information',
@@ -46,7 +53,8 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             $password: "$ecretPassword",
             $birthday:"06/19/2000",
             $phone:"1234567890",
-            $address:"Calle 123"
+            $address:"Calle 123",
+            $role:"USER_ROLE"
           }
         }
       */
@@ -59,6 +67,17 @@ const findOne = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (!user)
         return res.status(404).send({ msg: 'User not found' });
     res.status(200).json(user);
+    /**
+     * @swagger
+     * /api/endpoint:
+     *   get:
+     *     description: Descripción del endpoint
+     *     security:
+     *       - apiKey: []
+     *     responses:
+     *       '200':
+     *         description: Respuesta exitosa
+     */
 });
 exports.findOne = findOne;
 const findAll = (_, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -74,27 +93,65 @@ const findAll = (_, res) => __awaiter(void 0, void 0, void 0, function* () {
             msg: error
         });
     }
+    /**
+     * @swagger
+     * /api/endpoint:
+     *   get:
+     *     description: Descripción del endpoint
+     *     security:
+     *       - apiKey: []
+     *     responses:
+     *       '200':
+     *         description: Respuesta exitosa
+     */
 });
 exports.findAll = findAll;
 const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // #swagger.tags = ['Users']
     // #swagger.description = 'Endpoint delete a user'
-    const { id } = req.params;
-    yield user_1.default.findByIdAndDelete(id);
-    res.status(200).send({
-        msg: 'User deleted'
-    });
+    try {
+        const { id } = req.params;
+        yield user_1.default.findByIdAndDelete(id);
+        res.status(200).json({
+            msg: 'User deleted'
+        });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({
+            msg: error
+        });
+    }
+    /**
+     * @swagger
+     * /api/endpoint:
+     *   get:
+     *     description: Descripción del endpoint
+     *     security:
+     *       - apiKey: []
+     *     responses:
+     *       '200':
+     *         description: Respuesta exitosa
+     */
 });
 exports.deleteUser = deleteUser;
 const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // #swagger.tags = ['Users']
     // #swagger.description = 'Endpoint update a user'
-    const { id } = req.params;
-    const _a = req.body, { _id, email } = _a, data = __rest(_a, ["_id", "email"]);
-    const user = yield user_1.default.findByIdAndUpdate(id, data);
-    res.status(204).json({
-        user
-    });
+    try {
+        const { id } = req.params;
+        const _a = req.body, { _id, email } = _a, data = __rest(_a, ["_id", "email"]);
+        const user = yield user_1.default.findByIdAndUpdate(id, data);
+        res.status(204).json({
+            user
+        });
+    }
+    catch (error) {
+        console.log(error);
+        res.status(500).json({
+            msg: error
+        });
+    }
     /* #swagger.parameters['Contact'] = {
           in: 'body',
           description: 'User Information',
@@ -108,6 +165,17 @@ const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
           }
         }
       */
+    /**
+     * @swagger
+     * /api/endpoint:
+     *   get:
+     *     description: Descripción del endpoint
+     *     security:
+     *       - apiKey: []
+     *     responses:
+     *       '200':
+     *         description: Respuesta exitosa
+     */
 });
 exports.updateUser = updateUser;
 //# sourceMappingURL=user.js.map
