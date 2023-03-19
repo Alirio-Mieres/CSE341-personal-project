@@ -41,6 +41,7 @@ const createUserValidation = [
 exports.createUserValidation = createUserValidation;
 const updateUserValidation = [
     validate_jwt_1.validateJWT,
+    validate_roles_1.isAdminRole,
     (0, express_validator_1.check)('id', 'Is not a mongodb id').isMongoId(),
     (0, express_validator_1.check)('id').custom(db_validator_1.userExistById),
     (0, express_validator_1.check)('firstName', 'Firstname must be a string').optional().isString(),
